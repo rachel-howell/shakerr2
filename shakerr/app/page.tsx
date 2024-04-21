@@ -1,17 +1,19 @@
 'use client'
 
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
 
 export default function Home() {
 
 
   const [ userInput, setUserInput ] = useState("");
+  const router = useRouter();
 
   const submitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log("hi")
     console.log(userInput);
+    router.push('/search')
   };
     
 
@@ -28,8 +30,8 @@ export default function Home() {
 
             <p className="text-lg font-mono mt-16">Cocktail Recipe Search</p>
 
-            <div className="mt-2 items-center">
-                <form onSubmit={submitHandler}>
+            <div className="mt-2">
+                <form className="flex flex-col items-center" onSubmit={submitHandler}>
                   <div>
                       <input className="border rounded p-2 w-72 font-mono text-sm" type="text" placeholder="Type search here..." onChange={(e)=>setUserInput(e.target.value)}/>
                   </div>
